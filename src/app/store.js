@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userSlice } from "../movies/userSlice";
-import { movieSlice } from "../movies/MovieSlice";
+import { userApi } from "../features/auth/userApi";
+import { userSlice } from "../features/auth/userSlice";
+import { productApi } from "../features/shares/productApi";
+import { cartSlice } from "../features/carts/cartSlice";
 
 
 
@@ -9,9 +11,17 @@ import { movieSlice } from "../movies/MovieSlice";
 
 export const store = configureStore({
   reducer: {
-    [movieSlice.name]: movieSlice.reducer,
-    [userSlice.name]: userSlice.reducer
-  }
+    [userSlice.name]: userSlice.reducer,
+    [userApi.reducerPath]: userApi.reducer,
+    [productApi.reducerPath]:productApi.reducer,
+    [cartSlice.reducerPath]:cartSlice.reducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([
+      userApi.middleware,
+      productApi.middleware,
+    ]),
+
 });  
 
 
