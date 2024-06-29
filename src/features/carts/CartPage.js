@@ -11,7 +11,7 @@ import CostumDialog from '../../ui/CostumDialog';
 const CartPage = () => {
   const [addOrder,{isLoading}] = useAddOrderMutation();
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = () => setOpen(!open);  
   const { carts } = useSelector((state) => state.cartSlice);
   const { user } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();

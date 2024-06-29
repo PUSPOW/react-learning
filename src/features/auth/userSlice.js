@@ -9,9 +9,9 @@ import { addUserToLocal, clearFromLocal, getUserFromLocal } from "../shares/loca
 
 export const userSlice = createSlice({
   name: 'userSlice',
-  initialState: {
+  initialState: {  
     user: getUserFromLocal()
-  },
+  },  
   reducers: {
     addUser: (state,action) => {
       state.user= action.payload;

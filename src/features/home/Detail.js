@@ -11,7 +11,7 @@ const Detail = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useGetProductByIdQuery(id);
 
-
+    
   if (isLoading) {
     return <h1>Loading....</h1>
   }

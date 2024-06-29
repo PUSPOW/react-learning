@@ -10,7 +10,7 @@ export const orderApi = createApi({
   endpoints: (builder) => ({
 
     getAllOrders: builder.query({
-      query: (query) => ({
+      query: (query) => ({   
         url: '/',
         method: 'GET',
         headers: {

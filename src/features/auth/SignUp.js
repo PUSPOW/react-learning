@@ -12,7 +12,7 @@ import { useUserRegisterMutation } from './userApi';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
-  const [registerUser, { isLoading }] = useUserRegisterMutation();
+  const [registerUser, { isLoading }] = useUserRegisterMutation();  
   const nav = useNavigate();
 
   const { handleChange, values, handleSubmit, handleReset } = useFormik({

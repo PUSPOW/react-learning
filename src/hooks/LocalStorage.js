@@ -11,7 +11,7 @@ export const addUserToLocal = (users) => {
 
 
 export const getUserFromLocal = () => {
-  const data = localStorage.getItem('users');
+  const data = localStorage.getItem('users');  
   return data === null ? [] : JSON.parse(data);
 }
 
