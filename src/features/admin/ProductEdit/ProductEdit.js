@@ -5,7 +5,7 @@ import ProductEditForm from './ProductEditFom';
 
 
 const ProductEdit = () => {
-  const { id } = useParams();
+  const { id } = useParams();  
 
   const { data, isError, error, isLoading } = useGetProductByIdQuery(id);
 

@@ -8,7 +8,7 @@ const AdminProducts = () => {
 
   const { isLoading, isError, error, data } = useGetProductsQuery();
   const nav = useNavigate();
-  const TABLE_HEAD = ["", "Title", "CreatedAt",
+  const TABLE_HEAD = ["", "Title", "CreatedAt", 
     "Edit", "Delete"];
 
   if (isLoading) {

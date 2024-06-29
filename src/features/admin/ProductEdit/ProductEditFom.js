@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
-import * as Yup from 'yup';
+import * as Yup from 'yup';  
 import { useSelector } from "react-redux";
 import { imageUrl } from "../../../constant/constant";
 import { toast } from "react-toastify";
