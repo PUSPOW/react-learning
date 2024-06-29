@@ -9,7 +9,7 @@ import {
   MenuItem,
   Avatar,
   IconButton,
-} from "@material-tailwind/react";
+} from "@material-tailwind/react";  
 import {
   UserCircleIcon,
   ChevronDownIcon,

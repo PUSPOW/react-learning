@@ -9,7 +9,7 @@ const Home = () => {
   const {data, isLoading, error } = useGetProductsQuery();
 const nav = useNavigate();
 
-  if(isLoading) {
+  if(isLoading) {  
     return <h1>loading...</h1>;
   }
 

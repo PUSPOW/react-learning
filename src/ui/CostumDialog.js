@@ -12,7 +12,7 @@ const CostumDialog = ({open, handleOpen,handleConfirm}) => {
     <>
 
 
-      <Dialog open={open} handler={handleOpen}>
+      <Dialog open={open} handler={handleOpen}>  
         <DialogHeader>Are you sure ?</DialogHeader>
         <DialogBody>
           You want to order ?

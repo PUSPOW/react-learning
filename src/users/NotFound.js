@@ -13,7 +13,7 @@ const NotFound = () => {
       <h1>Not Found</h1>
       <button onClick={() => nav(-1)}>Go Back</button>
 
-
+  
     </div>
   )
 }

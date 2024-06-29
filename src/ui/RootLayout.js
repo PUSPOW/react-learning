@@ -11,7 +11,7 @@ const RootLayout = () => {
 
       <Outlet />
 
-      <ToastContainer  autoClose={1000} pauseOnHover={false} pauseOnFocusLoss={false}/>
+      <ToastContainer  autoClose={1000} pauseOnHover={false} pauseOnFocusLoss={false}/>  
 
 
     </>

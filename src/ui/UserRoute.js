@@ -9,4 +9,4 @@ const UserRoute = () => {
   return user === null ? <Outlet /> : <Navigate to='/' />
 }
 
-export default UserRoute
+export default UserRoute   

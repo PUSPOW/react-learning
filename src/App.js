@@ -17,7 +17,7 @@ import CartPage from './features/carts/CartPage';
 
 
 const App = () => {
-  const router = createBrowserRouter([
+  const router = createBrowserRouter([  
     {
      path: '/',
      element: <RootLayout />,
