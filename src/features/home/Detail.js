@@ -6,10 +6,12 @@ import { imageUrl } from '../../constant/constant';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToCart } from '../carts/cartSlice';
+import ProductReview from './ProductReview';
 
 const Detail = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useGetProductByIdQuery(id);
+  const {user} = useSelector((state) => state.userSlice);
 
     
   if (isLoading) {
@@ -17,6 +19,7 @@ const Detail = () => {
   }
   const product = data?.data;
   return (
+    <>
     <div className='grid grid-cols-3 p-4 items-center gap-10'>
 
       <div className="image">
@@ -34,6 +37,8 @@ const Detail = () => {
 
 
     </div>
+    <ProductReview user={user} id={product._id} reviews={product.reviews}/>
+    </>
   )
 }
 
@@ -50,6 +55,7 @@ export const AddCart = ({ product }) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { carts } = useSelector((state) => state.cartSlice);
+  const { user } = useSelector((state) => state.userSlice);
   const isExist = carts.find((cart) => cart._id === product._id);
 
   const formik = useFormik({
@@ -135,7 +141,7 @@ export const AddCart = ({ product }) => {
 
       </table>
       <div className='flex justify-center pt-7'>
-        <Button onClick={handleSubmit}>Add To Cart</Button>
+        <Button disabled={user?.isAdmin || !user} onClick={handleSubmit}>Add To Cart</Button>
       </div>
     </Card>
   )

@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGetProductsQuery } from '../features/shares/productApi'
 import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from '@material-tailwind/react';
 import Cara from '../features/home/Cara';
 import { useNavigate } from 'react-router';
 import { imageUrl } from '../constant/constant';
+import Loading from './Loading';
+import { IconButton } from "@material-tailwind/react";  
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { useEffect } from 'react';
 
 const Home = () => {
-  const {data, isLoading, error } = useGetProductsQuery();
+  const [active, setActive] = useState(1);
+  const {data, isLoading, error } = useGetProductsQuery({page: active});
 const nav = useNavigate();
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, [active])
 
-  if(isLoading) {  
-    return <h1>loading...</h1>;
+if(isLoading) {  
+    return <Loading />;
   }
 
   return (
@@ -43,8 +51,71 @@ const nav = useNavigate();
       </Card>
       })}
     </div>
+    <CircularPagination data={data} active={active} setActive={setActive}/>
     </div>
   )
 }
 
 export default Home
+
+
+
+
+
+
+export function CircularPagination({ data, active, setActive }) {
+
+  const total = data.total;
+  const numShow = Math.ceil(total / 5);
+
+  const getItemProps = (index) =>
+  ({
+    variant: active === index ? "filled" : "text",
+    color: "gray",
+    onClick: () => setActive(index),
+    className: "rounded-full",
+  });
+
+  const next = () => {
+    if (active === 10) return;
+
+    setActive(active + 1);
+  };
+
+  const prev = () => {
+    if (active === 1) return;
+
+    setActive(active - 1);
+  };
+
+
+
+  return (
+    <div className="flex items-center gap-4 p-5 justify-center">
+      <Button
+        variant="text"
+        className="flex items-center gap-2 rounded-full"
+        onClick={prev}
+        disabled={active === 1}
+      >
+        <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
+      </Button>
+      <div className="flex items-center gap-2">
+        {[...Array(numShow).keys()].map((c) => {
+          return <IconButton key={c + 1} {...getItemProps(c + 1)}>{c + 1}</IconButton>;
+        })}
+
+
+      </div>
+      <Button
+        variant="text"
+        className="flex items-center gap-2 rounded-full"
+        onClick={next}
+        disabled={active === numShow}
+      >
+        Next
+        <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+      </Button>
+    </div>
+  );
+}

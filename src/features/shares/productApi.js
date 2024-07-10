@@ -11,10 +11,17 @@ export const productApi = createApi({
     getProducts: builder.query({
       query: (query) => ({
         url: '/',  
-        method: 'GET'  
+        method: 'GET',
+        params: {
+          search: query?.search,
+          page: query?.page
+        }  
       }),
       providesTags: ['Product']
     }),
+
+   
+
     getTopProducts: builder.query({
       query: () => ({
         url: '/top_products',
@@ -33,6 +40,18 @@ export const productApi = createApi({
     updateProduct: builder.mutation({
       query: (query) => ({
         url: `/${query.id}`,
+        body: query.body,
+        method: 'PATCH',
+        headers: {
+          Authorization: query.token
+        }
+      }),
+      invalidatesTags: ['Product']
+    }),
+
+    reviewAdd: builder.mutation({
+      query: (query) => ({
+        url: `/reviews/${query.id}`,
         body: query.body,
         method: 'PATCH',
         headers: {
@@ -74,4 +93,4 @@ export const productApi = createApi({
 });
 
 
-export const {useGetProductsQuery,useGetProductByIdQuery,useGetTopProductsQuery,useAddProductMutation,useUpdateProductMutation,useRemoveProductMutation } = productApi;
+export const {useGetProductsQuery,useGetProductByIdQuery,useGetTopProductsQuery,useAddProductMutation,useUpdateProductMutation,useRemoveProductMutation, useReviewAddMutation,useSearchProductsQuery } = productApi;

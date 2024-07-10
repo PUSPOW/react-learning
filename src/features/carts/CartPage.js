@@ -2,7 +2,7 @@ import { Button } from '@material-tailwind/react';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { imageUrl } from '../../constant/constant';
-import { setToCart } from './cartSlice';
+import { clearCart, setToCart } from './cartSlice';
 import { useAddOrderMutation } from '../orders/orderApi';
 import { toast } from 'react-toastify';
 import CostumDialog from '../../ui/CostumDialog';
@@ -27,6 +27,7 @@ const CartPage = () => {
         },
         token:user.token
       }).unwrap();
+      dispatch(clearCart());
       toast.success('successfully addeed');
 
     } catch (err) {
